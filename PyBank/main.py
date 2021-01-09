@@ -1,14 +1,17 @@
 import os
 import csv
 
-csvpath = os.path.join('Resources', 'budget_data.csv')
-total_profitLoss = 0
+#set the initial values
+net_total = 0
+count = 0
+
+csvpath = os.path.join('/Users','tiffanyharris','Desktop','git_things','myGitRepos','python-challenge','PyBank','Resources', 'budget_data.csv')
 
 with open(csvpath, newline='') as csvfile:
-    csvreader = csv.reader(csvfile,delimiter=',')
-    lines = len(list(csvreader))
-    print("Total Months: " + str(lines-1))
+    csvreader = csv.DictReader(csvfile) #Use DictReader instead of reader to skip header
     for row in csvreader:
-        profit_loss = row[1]
-        total_profitLoss = profit_loss + total_profitLoss
-    print(total_profitLoss)
+        count += 1  #number of rows after the header
+        net_total += int(row["Profit/Losses"])  #total of the profit/losses
+
+print("Total Months: " + str(count))
+print("Total: $" + str(net_total))
