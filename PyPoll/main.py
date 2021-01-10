@@ -9,11 +9,11 @@ li_votes = 0
 otooley_votes = 0
 max_vote = 0
 
-#csvpath = os.path.join('/Users','tiffanyharris','Desktop','git_things','myGitRepos','python-challenge','PyPoll','Resources', 'election_data.csv')
 csvpath = os.path.join('.','Resources','election_data.csv')
+
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile)
-    next(csvreader) #skip header
+    csvheader = next(csvreader) #store header row and skip it for data counts
 
     for row in csvreader:
         count += 1  #number of rows after the header
