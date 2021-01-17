@@ -36,16 +36,38 @@ with open(csvpath, newline='') as csvfile:
                     winner = "Li"
                     if otooley_votes > max_vote:
                         max_vote = otooley_votes
-                        winner = "O'Tooley" 
-    
-print("Election Results")
-print("--------------------")  
-print("Total Votes: " + str(count))
-print("--------------------")  
-print("Khan Votes: " + str(round(int(khan_votes)/int(count)*100,3)) + "%  (" + str(khan_votes)+")")
-print("Correy Votes: " + str(round(int(correy_votes)/int(count)*100,3)) + "%  (" + str(correy_votes)+")")
-print("Li Votes: " + str(round(int(li_votes)/int(count)*100,3)) + "%  (" + str(li_votes)+")")
-print("O'Tooley Votes: " + str(round(int(otooley_votes)/int(count)*100,3)) + "%  (" + str(otooley_votes)+")")
-print("--------------------")  
-print("Winner: " + winner)
-print("--------------------")  
+                        winner = "O'Tooley"
+    #print results to terminal
+    print("Election Results")
+    print("--------------------")  
+    print("Total Votes: " + str(count)) #use str to concatenate a number with a string
+    print("--------------------")  
+    print("Khan Votes: " + str(round(int(khan_votes)/int(count)*100,3)) + "%  (" + str(khan_votes)+")")
+    print("Correy Votes: " + str(round(int(correy_votes)/int(count)*100,3)) + "%  (" + str(correy_votes)+")")
+    print("Li Votes: " + str(round(int(li_votes)/int(count)*100,3)) + "%  (" + str(li_votes)+")")
+    print("O'Tooley Votes: " + str(round(int(otooley_votes)/int(count)*100,3)) + "%  (" + str(otooley_votes)+")")
+    print("--------------------")  
+    print("Winner: " + winner)
+    print("--------------------")  
+
+#the following code is writes the financial analysis out to a text file
+save_path = "./analysis/" #save the file in the analysis folder
+file_name = ("PyPoll_Analysis.txt") #name of the new file
+completeName = os.path.join(save_path,file_name) #us os module to adjust for oper system
+f = open(completeName,"w") #specify w to write the file
+
+#this code writes the lines to the text files
+#the \n creates new line feeds
+f.write("Election Results\n")
+f.write("--------------------\n") #use \n to create a new line on the text file
+f.write("Total Votes: " + str(count) +"\n")
+f.write("--------------------\n")
+f.write("Khan Votes: " + str(round(int(khan_votes)/int(count)*100,3)) + "%  (" +
+    str(khan_votes) + ")\n")
+f.write("Correy Votes: " + str(round(int(correy_votes)/int(count)*100,3)) + "%  (" + str(correy_votes)+")\n")
+f.write("Li Votes: " + str(round(int(li_votes)/int(count)*100,3)) + "%  (" + str(li_votes)+")\n")
+f.write("O'Tooley Votes: " + str(round(int(otooley_votes)/int(count)*100,3)) + "%  (" + str(otooley_votes) + ")\n")
+f.write("--------------------\n")
+f.write("Winner: " + winner + "\n")
+f.write("--------------------\n")
+f.close() #close the file after finished writing

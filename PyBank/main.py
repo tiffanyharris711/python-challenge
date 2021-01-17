@@ -33,6 +33,7 @@ with open(csvpath, newline='') as csvfile:
         
 average_change = round(statistics.mean(change_dataset),2) #use stats module to calc mean and round to 2 decimals
 
+#print results to terminal
 print("Financial Analysis")
 print("--------------------")
 print("Total Months: " + str(count))
@@ -40,3 +41,20 @@ print("Total: $" + str(net_total))
 print("Average Change: $" + str(average_change))
 print("Greatest Increase in Profits: " + str(greatest_increase_per) + " ($" + str(greatest_increase)+")")
 print("Greatest Decrease in Profits: " + str(greatest_decrease_per) + " ($" + str(greatest_decrease)+")")
+
+#the following code is writes the financial analysis out to a text file
+save_path = "./analysis/" #save the file in the analysis folder
+file_name = ("PyBank_Analysis.txt") #name of the new file
+completeName = os.path.join(save_path,file_name) #us os module to adjust for oper system
+f = open(completeName,"w") #specify w to write the file
+
+#this code writes the lines to the text files
+#the \n creates new line feeds
+f.write("Financial Analysis \n")
+f.write("-------------------- \n")
+f.write("Total Months: " + str(count) + "\n")
+f.write("Total: $" + str(net_total) + "\n")
+f.write("Average Change: $" + str(average_change) + "\n")
+f.write("Greatest Increase in Profits: " + str(greatest_increase_per) + " ($" + str(greatest_increase)+")\n")
+f.write("Greatest Decrease in Profits: " + str(greatest_decrease_per) + " ($" + str(greatest_decrease)+")\n")
+f.close() #close the file after finished writing
